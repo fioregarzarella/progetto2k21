@@ -11,13 +11,15 @@ import java.net.URLConnection;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
+import com.fasterxml.jackson.annotation.JacksonInject.Value;
 import com.sun.el.parser.ParseException;
 
+import esameProgrammazione.Model.Metadata;
 import esameProgrammazione.Model.Post;
 
 public class DataBase {
-	public static JSONObject JSONdownloader(Post post) throws ParseException, MalformedURLException {
-		String url = "";
+	public static JSONObject JSONdownloader(String value) throws ParseException, MalformedURLException {
+		String url = "https://graph.facebook.com/me?fields=posts{"+value+"}&access_token=EAAFKYxCh5ZBcBAAdgR2grBVURpWV0SCaZAjEJHjz6yzI06WpIOL0xfEWQRFZCzOU1sqOu76G1QWvHMpQVZB0ZB1k4CpfZCBmzDLkmc3xWcVaEZCR9NTZAaAIEeyed4ZCOXqMZAgXphZBbd6uS5P6nU7Ll3JWjAxTD6YTGeR6zZC3zTWAFqZBlyr8AqdgMPa7q5Mf7tdig2xmSz0YVBBs1UZBenz2OyZBeUQwPa6Mvgn9nXKVPqA7AZDZD";
 		
 		String data = "";
 		String line = "";
