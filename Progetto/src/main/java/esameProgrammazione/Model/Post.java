@@ -3,18 +3,35 @@ package esameProgrammazione.Model;
 import javax.print.attribute.standard.DateTimeAtCompleted;
 
 public class Post {
-	private String id;
-	private Boolean is_hidden;
-	private Privacy privacy;
-	private String created_time;
-	private String media_type;
+	private String id; //id post
+	private Boolean is_hidden; //se nascosto o no
+	private Privacy privacy; //oggetto per descrivere la visibilità del post
+	private String created_time; //data creazione post
+	private String message;
 	
-	public Post(String id, Boolean is_hidden, Privacy privacy, String created_time) {
+	
+	public Post() {
+		super();
+	}
+
+	private String media_type; //tipo di media nel post
+	
+	public Post(String id, Boolean is_hidden, Privacy privacy, String created_time,Post String message) {
 		super();
 		this.id = id;
-		this.is_hidden = is_hidden;
+		
 		this.privacy = privacy;
 		this.created_time = created_time;
+		this.media_type = media_type; 
+		this.message = message;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 	public String getId() {
@@ -25,13 +42,6 @@ public class Post {
 		this.id = id;
 	}
 
-	public Boolean getIs_hidden() {
-		return is_hidden;
-	}
-
-	public void setIs_hidden(Boolean is_hidden) {
-		this.is_hidden = is_hidden;
-	}
 
 	public Privacy getPrivacy() {
 		return privacy;
