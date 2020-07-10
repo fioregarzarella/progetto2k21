@@ -1,6 +1,6 @@
 package esameProgrammazione.Model;
 
-import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitterReturnValueHandler;
+import java.lang.*;
 
 public class postParams {
 	private String[] postParam;
@@ -22,14 +22,22 @@ public class postParams {
 	
 	public boolean ricercaParametro(String valore, postParams parametro) {
 		String[] x = parametro.getPostParam();
-		int i=0;
-		for (String string : x) {
+		int i;
+		for (i=0;i<x.length;i++) {
 			if( x[i].contains(valore))
 					return true;
-			i++;
 		}
 		return false;
 	}
 	
-
+	/*public String formatParams(postParams parametro) {
+		
+		String[] y= parametro.getPostParam();
+		String tmp=new String();
+		for(int i=0;i< y.length-1;i++) {
+			tmp = tmp + y[i]+ "," + y[i+1];
+		}
+		return tmp;
+	}	
+	 */
 }

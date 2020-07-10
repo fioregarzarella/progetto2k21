@@ -8,6 +8,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
+import java.lang.*;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
@@ -24,7 +25,9 @@ public class DataBase {
 		
 		final String access_token="EAAPj0sVhE6kBAFyEEM9xYOD56hf55dLsV0ZCIAIe5vyfkCwvGzlOH5uLABwL48ZBjJcNfcP9oNFpLnoL1UZAfRnM3pNW4ZApNKZCkWUy1TKTDgqG39jJTODB9ril9WHnrzLYoHBOBI346QpkW1ZA3ynF34Q6uYDbcMsdHqxyaSyxwRQpj9ENCncHQzAw0r8vTaoZCZCAnV5ZCCRIZBrgdfvQ2eepESxu3Uw8wC6iSdUhFxEAZDZD";
 		
-		String url=String.format("https://graph.facebook.com/me?fields=%s{%s}&access_token=%s", type, params, access_token);
+		String appoggio = new String(formatParams(params));
+		
+		String url=String.format("https://graph.facebook.com/me?fields=%s{%s}&access_token=%s", type, appoggio , access_token);
 		
 		String data = "";
 		String line = "";
@@ -59,4 +62,14 @@ public class DataBase {
 		return json;
 		
 	 }
+
+	private static String formatParams(postParams params) {
+		String[] y= params.getPostParam();
+		String tmp=new String();
+		for(int i=0;i< y.length-1;i++) {
+			tmp = tmp + y[i]+ "," + y[i+1];
+		}
+		return tmp;
+		
+	}
 }
