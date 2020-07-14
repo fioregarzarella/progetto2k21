@@ -24,6 +24,12 @@ public class postParams {
 		String[] x = parametro.getPostParam();
 		int i;
 		for (i=0;i<x.length;i++) {
+			if( x[i].equals(null))
+					return false;
+		}
+		
+		
+		for (i=0;i<x.length;i++) {
 			if( x[i].contains(valore))
 					return true;
 		}

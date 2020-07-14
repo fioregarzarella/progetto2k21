@@ -5,7 +5,8 @@ public class ApiParams {
 
 	
 	public ApiParams() {
-		super();
+      super();
+      aParams = "posts";
 	}
 	
 	
@@ -13,9 +14,12 @@ public class ApiParams {
 		return aParams;
 	}
 
-	public void setaParams() {
-		aParams = "posts";
+
+	public void setaParams(String aParams) {
+		this.aParams = aParams;
 	}
+
+	
 
 	
 	

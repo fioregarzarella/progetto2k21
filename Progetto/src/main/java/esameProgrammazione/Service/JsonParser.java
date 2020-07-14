@@ -1,9 +1,12 @@
 package esameProgrammazione.Service;
 
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import com.sun.el.parser.ParseException;
 
 import esameProgrammazione.Database.DataBase;
 import esameProgrammazione.Model.ApiParams;
@@ -14,11 +17,11 @@ import esameProgrammazione.Model.postParams;
 public class JsonParser { 
 	
 	
-	public static ArrayList<Post> parsing(ApiParams type, postParams params){
-		
+	public static ArrayList<Post> parsing(ApiParams type, postParams params) throws MalformedURLException, ParseException{
+			
 	JSONObject parser =  DataBase.JSONdownloader(type, params);
-	
-	JSONArray data = (JSONArray) parser.getJSONObject("posts").getJSONArray("data");
+	System.out.println("eiiii sei arrivato qui");
+	JSONArray data =  (JSONArray)  parser.getJSONObject("posts").getJSONArray("data");
 	
 	ArrayList<Post> listaPosts= new ArrayList<Post>();
 	
@@ -42,7 +45,7 @@ public class JsonParser {
 
 		
 		if(params.ricercaParametro("attachments", params)==true) {
-			JSONArray attach = (JSONArray) postObject.getJSONObject("attachments").getJSONArray("data");
+			JSONArray attach = (JSONArray) postObject.getJSONObject("attachments").get("data");
 			JSONObject media_tipo = attach.getJSONObject(i);
 			String tipoMedia = (String) media_tipo.get("media_type");
 			post.setMedia_type(tipoMedia);
