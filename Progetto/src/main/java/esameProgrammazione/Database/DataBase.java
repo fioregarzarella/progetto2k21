@@ -21,30 +21,31 @@ import esameProgrammazione.Model.postParams;
 
 public class DataBase {
 	private static String formatParams(postParams params) {
-		
 		if(params.getPostParam()==null) {
 			return "";
 		}
-			
+		params.stampaPostParam();
 		String[] y= params.getPostParam();
 		String tmp=new String();
-		
-		for(int i=0;i< y.length-1;i++) {
-			
-			tmp = tmp + y[i]+ "," + y[i+1];
-		}
+		if(y.length==1) {
+			tmp=y[0];
+		                }
+		else {
+				for(int i=0;i< y.length-1;i++) {
+					tmp = tmp + y[i]+ "," + y[i+1];
+					}
+		      }	
 		return tmp;
-		
-	}
+		}
 	
 	public static JSONObject JSONdownloader(ApiParams type,postParams params) throws ParseException, MalformedURLException {
 
-		final String access_token="EAAFKYxCh5ZBcBANZCDFYPPBqsl63NKvNl8Qgpn338930GndGLMOltAmaZBrAV7pfKEu6b8KZCPjuu9JGOtAXuGaHh6BZBpHRQdDX0nlocFehY9dmqgdVabzw6QNk6GQmMmXCJCfRwjhrg0X1Jl6odl1teJiE6QgV3iCLUP0ZBoKU1FNZB1MEogPypuWaCQ08m3gQCgh0p8vYK9jXJEETZCiu8VZCv4brO7QZBVZC3YyHMw13wZDZD";
+		final String access_token="EAAFKYxCh5ZBcBAJBljNiHcOVDNPZBLB0SY1ZAJFPZCZAzlCc82338ZCVNU2VUmkyH8iiqCTuENXw4unbfAC27VqPC3YIXuhQHRYQrZCC25xRBDDYGWmQfRAmAgv9EmDeR526sIS69hugF17l0uc9qQVZCCZBUcq2MbopZBSR1ZCRRHeYeZBm1riZCKbvJl1q90kYjBcjgsTEEhIlNPS7ZBxPGF23rOhZB9qX61dp1gjiDgJ6zzuBwZDZD";
 		
 		String appoggio = new String(formatParams(params));
 		
 		String url=String.format("https://graph.facebook.com/me?fields=%s{%s}&access_token=%s", type.getaParams(), appoggio , access_token);
-
+System.out.println(url);
 		String data = "";
 		String line = "";
 		
@@ -71,9 +72,8 @@ public class DataBase {
 		} catch (Exception e) {	
 			e.printStackTrace();	
 			}
-		System.out.println("eiiii sei arrivato qui3");
-		JSONObject json = new JSONObject(data);
 		
+		JSONObject json = new JSONObject(data);
 		
 		return json;
 		

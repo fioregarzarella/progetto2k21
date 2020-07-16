@@ -6,6 +6,7 @@ import java.lang.ClassNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,6 +42,10 @@ public class ControllerClass {
 	public  ArrayList<Post> getps() throws IOException {
 		ApiParams type= new ApiParams();
 		postParams params= new postParams();
+		String[] x = new String[1];
+		x[0]="privacy";
+		params.setPostParam(x);
+		params.stampaPostParam();
 		ImplPostService implPostService = new ImplPostService(type,params);
 		return implPostService.getPosts();
 	}

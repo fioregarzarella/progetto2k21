@@ -20,7 +20,6 @@ public class JsonParser {
 	public static ArrayList<Post> parsing(ApiParams type, postParams params) throws MalformedURLException, ParseException{
 			
 	JSONObject parser =  DataBase.JSONdownloader(type, params);
-	System.out.println("eiiii sei arrivato qui");
 	JSONArray data =  (JSONArray)  parser.getJSONObject("posts").getJSONArray("data");
 	
 	ArrayList<Post> listaPosts= new ArrayList<Post>();
@@ -29,9 +28,14 @@ public class JsonParser {
 		Post post = new Post();
 		
 		JSONObject postObject = (JSONObject) data.get(i);
+		/*if( postObject.get("message")=="null") {
+			post.setMessage("");}
+		else {
+			post.setMessage( (String) postObject.get("message"));
+		}*/
 		
-		post.setMessage( (String) postObject.get("message"));
-		post.setCreated_time( (String) postObject.get("created_time"));
+		
+		//post.setCreated_time( (String) postObject.get("created_time"));
 		post.setId( (String) postObject.get("id"));
 		
 		if(params.ricercaParametro("privacy", params)==true) {

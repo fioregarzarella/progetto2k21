@@ -11,6 +11,19 @@ public class postParams {
 		super();
 	}
 
+	public void stampaPostParam() {
+		String [] y ;
+		y=getPostParam();
+		if(y==null) {
+			System.out.println("vuoto");
+		}
+		else {
+			for(int i=0;i<y.length;i++) {
+			   System.out.println(y[i]);
+			}
+		}
+		
+	}
 	public String[] getPostParam() {
 		return postParam;
 	}
@@ -21,7 +34,11 @@ public class postParams {
 	
 	
 	public boolean ricercaParametro(String valore, postParams parametro) {
-		String[] x = parametro.getPostParam();
+		
+		if(parametro.getPostParam()==null) {
+			return false;
+		}
+	   String[] x = parametro.getPostParam();
 		int i;
 		for (i=0;i<x.length;i++) {
 			if( x[i].equals(null))
