@@ -7,13 +7,13 @@ public class Post {
 	private Privacy privacy; //oggetto per descrivere la visibilità del post
 	private String created_time; //data creazione post
 	private String message;
-	
+	private String media_type;
 	
 	public Post() {
 		super();
 	}
 
-	private String media_type; //tipo di media nel post
+	 //tipo di media nel post
 	
 	public Post(String id,Privacy privacy, String created_time, String message) {
 		super();
@@ -61,8 +61,8 @@ public class Post {
 		return media_type;
 	}
 
-	public void setMedia_type(String media_type) {
-		this.media_type = media_type;
+	public void setMedia_type(String tipoMedia) {
+		this.media_type = tipoMedia;
 	}
 	
 

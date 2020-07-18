@@ -20,11 +20,24 @@ import esameProgrammazione.Model.Post;
 import esameProgrammazione.Model.postParams;
 
 public class DataBase {
+	
 	private static String formatParams(postParams params) {
 		if(params.getPostParam()==null) {
 			return "";
 		}
-		params.stampaPostParam();
+		if(params.ricercaParametro("attachments", params)==true) {
+			
+			String[] z= params.getPostParam();
+			String tmp=new String();
+			for (int i=0;i<z.length;i++) {
+						if( z[i].contains("attachments")) {
+					    tmp = z[i] + "{media_type}";
+				        }
+		    }
+	    return tmp;}
+		
+		
+        params.stampaPostParam();
 		String[] y= params.getPostParam();
 		String tmp=new String();
 		if(y.length==1) {
@@ -38,9 +51,28 @@ public class DataBase {
 		return tmp;
 		}
 	
+	/*private static String attachformatParams(postParams params) {
+		
+		if(params.ricercaParametro("attachments", params)==true) {
+		
+			String[] z= params.getPostParam();
+			String tmp=new String();
+			for (int i=0;i<z.length-1;i++) {
+						if( z[i].contains("attachments")) {
+					    tmp = z[i] + "{media_type}"+ ",";
+				        }
+						
+			}
+	return tmp;}
+		else return "";
+		
+	}*/
+	
+	
+	
 	public static JSONObject JSONdownloader(ApiParams type,postParams params) throws ParseException, MalformedURLException {
 
-		final String access_token="EAAFKYxCh5ZBcBAJBljNiHcOVDNPZBLB0SY1ZAJFPZCZAzlCc82338ZCVNU2VUmkyH8iiqCTuENXw4unbfAC27VqPC3YIXuhQHRYQrZCC25xRBDDYGWmQfRAmAgv9EmDeR526sIS69hugF17l0uc9qQVZCCZBUcq2MbopZBSR1ZCRRHeYeZBm1riZCKbvJl1q90kYjBcjgsTEEhIlNPS7ZBxPGF23rOhZB9qX61dp1gjiDgJ6zzuBwZDZD";
+		final String access_token="EAAFKYxCh5ZBcBAHcNWZBABbrUK5bHkXiH1iHYHPFqPaq253KlB5ajK13jvkFhPqoZBvSACfFbRj9AtVTInBLmXwf6NZA1lEpcZBqPjyKtihZBPuUVZA6UxOYMmgUYDP8Dg7g7gBxBJPTSQJZCwCGRMRyxuouyQdyjrWTPBFeCvRMoqHjDm2PIW0ZB3onZBZBh5WF6GePDgBjI4ge1BVI6hqEvQVKJcgNmLqvaE6e50ZCBNJCsAZDZD";
 		
 		String appoggio = new String(formatParams(params));
 		

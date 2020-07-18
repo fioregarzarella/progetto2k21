@@ -10,6 +10,7 @@ import com.sun.el.parser.ParseException;
 
 import esameProgrammazione.Database.DataBase;
 import esameProgrammazione.Model.ApiParams;
+import esameProgrammazione.Model.Media_type;
 import esameProgrammazione.Model.Post;
 import esameProgrammazione.Model.Privacy;
 import esameProgrammazione.Model.postParams;
@@ -21,10 +22,10 @@ public class JsonParser {
 			
 	JSONObject parser =  DataBase.JSONdownloader(type, params);
 	JSONArray data =  (JSONArray)  parser.getJSONObject("posts").getJSONArray("data");
-	
 	ArrayList<Post> listaPosts= new ArrayList<Post>();
-	
 	for(int i=0; i< data.length(); i++) {
+		
+		
 		Post post = new Post();
 		
 		JSONObject postObject = (JSONObject) data.get(i);
@@ -47,21 +48,22 @@ public class JsonParser {
 			post.setPrivacy(tmp);
 		}
 
-		
 		if(params.ricercaParametro("attachments", params)==true) {
-			JSONArray attach = (JSONArray) postObject.getJSONObject("attachments").get("data");
-			JSONObject media_tipo = attach.getJSONObject(i);
+			
+			 JSONArray attach = (JSONArray) postObject.getJSONObject("attachments").get("data");
+			
+			JSONObject media_tipo =  attach.getJSONObject(0);
+			System.out.println(media_tipo);
 			String tipoMedia = (String) media_tipo.get("media_type");
 			post.setMedia_type(tipoMedia);
 			
+			
+			
 		}
-		
 		listaPosts.add(post);
-		
+		//System.out.println(listaPosts.size());
 		
 	} //fine for
-	
-	
 	return listaPosts;
 	
 	
