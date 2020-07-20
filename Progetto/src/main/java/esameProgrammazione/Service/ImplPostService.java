@@ -27,7 +27,6 @@ public class ImplPostService implements PostService {
 		
 		try {
 			ArrayList<Post> lista=JsonParser.parsing(type, params);
-			System.out.println("ciao");
 			for(int i=0; i<lista.size(); i++) {
 				 Post psPost=lista.get(i);
 				 posts.add(psPost);

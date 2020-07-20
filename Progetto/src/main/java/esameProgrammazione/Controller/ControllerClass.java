@@ -43,9 +43,8 @@ public class ControllerClass {
 		ApiParams type= new ApiParams();
 		postParams params= new postParams();
 		String[] x = new String[1];
-		x[0]="attachments";
+		x[0]="privacy";
 		params.setPostParam(x);
-		params.stampaPostParam();
 		ImplPostService implPostService = new ImplPostService(type,params);
 		return implPostService.getPosts();
 	}

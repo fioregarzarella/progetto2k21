@@ -29,14 +29,15 @@ public class JsonParser {
 		Post post = new Post();
 		
 		JSONObject postObject = (JSONObject) data.get(i);
-		/*if( postObject.get("message")=="null") {
-			post.setMessage("");}
-		else {
+		if( postObject.has("message")==true) {
 			post.setMessage( (String) postObject.get("message"));
-		}*/
+			}
+		else {
+			post.setMessage(null);
+		}
 		
 		
-		//post.setCreated_time( (String) postObject.get("created_time"));
+		post.setCreated_time( (String) postObject.get("created_time"));
 		post.setId( (String) postObject.get("id"));
 		
 		if(params.ricercaParametro("privacy", params)==true) {
@@ -49,19 +50,21 @@ public class JsonParser {
 		}
 
 		if(params.ricercaParametro("attachments", params)==true) {
-			
+			 if(postObject.has("attachments")==true) {
 			 JSONArray attach = (JSONArray) postObject.getJSONObject("attachments").get("data");
 			
 			JSONObject media_tipo =  attach.getJSONObject(0);
-			System.out.println(media_tipo);
+			
 			String tipoMedia = (String) media_tipo.get("media_type");
-			post.setMedia_type(tipoMedia);
+			post.setMedia_type(tipoMedia);}
+			 else {
+				 post.setMedia_type(null);
+			 }
 			
 			
 			
 		}
 		listaPosts.add(post);
-		//System.out.println(listaPosts.size());
 		
 	} //fine for
 	return listaPosts;

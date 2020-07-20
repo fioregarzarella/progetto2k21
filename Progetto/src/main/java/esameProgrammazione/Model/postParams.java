@@ -11,19 +11,19 @@ public class postParams {
 		super();
 	}
 
-	public void stampaPostParam() {
+	/*public void stampaPostParam() {
 		String [] y ;
 		y=getPostParam();
 		if(y==null) {
 			System.out.println("vuoto");
 		}
-		else {
-			for(int i=0;i<y.length;i++) {
-			   System.out.println(y[i]);
-			}
-		}
-		
-	}
+		    else {
+			for(int i=0;i<y.length;i++)
+			   System.out.println(y[i]);	
+		    }	
+	 }*/
+	
+	
 	public String[] getPostParam() {
 		return postParam;
 	}
@@ -53,14 +53,5 @@ public class postParams {
 		return false;
 	}
 	
-	/*public String formatParams(postParams parametro) {
-		
-		String[] y= parametro.getPostParam();
-		String tmp=new String();
-		for(int i=0;i< y.length-1;i++) {
-			tmp = tmp + y[i]+ "," + y[i+1];
-		}
-		return tmp;
-	}	
-	 */
+	
 }

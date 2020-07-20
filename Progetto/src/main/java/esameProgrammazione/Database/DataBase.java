@@ -25,19 +25,37 @@ public class DataBase {
 		if(params.getPostParam()==null) {
 			return "";
 		}
-		if(params.ricercaParametro("attachments", params)==true) {
+		if(params.ricercaParametro("attachments", params)==true && params.ricercaParametro("privacy", params)==false) {
 			
 			String[] z= params.getPostParam();
 			String tmp=new String();
 			for (int i=0;i<z.length;i++) {
 						if( z[i].contains("attachments")) {
-					    tmp = z[i] + "{media_type}";
+					    tmp = z[i] + "{media_type},created_time,message";
+				        }
+		    }
+	    return tmp;}
+		if(params.ricercaParametro("privacy", params)==true && params.ricercaParametro("attachments", params)==false) {
+			
+			String[] z= params.getPostParam();
+			String tmp=new String();
+			for (int i=0;i<z.length;i++) {
+						if( z[i].contains("privacy")) {
+					    tmp = z[i] + ",created_time,message";
+				        }
+		    }
+	    return tmp;}
+		if(params.ricercaParametro("privacy", params)==true && params.ricercaParametro("privacy", params)==true) {
+			
+			String[] z= params.getPostParam();
+			String tmp=new String();
+			for (int i=0;i<z.length;i++) {
+						if( z[i].contains("privacy")) {
+					    tmp = z[i] + ",created_time,message,attachments{media_type}";
 				        }
 		    }
 	    return tmp;}
 		
-		
-        params.stampaPostParam();
 		String[] y= params.getPostParam();
 		String tmp=new String();
 		if(y.length==1) {
@@ -48,36 +66,19 @@ public class DataBase {
 					tmp = tmp + y[i]+ "," + y[i+1];
 					}
 		      }	
+		
 		return tmp;
 		}
-	
-	/*private static String attachformatParams(postParams params) {
-		
-		if(params.ricercaParametro("attachments", params)==true) {
-		
-			String[] z= params.getPostParam();
-			String tmp=new String();
-			for (int i=0;i<z.length-1;i++) {
-						if( z[i].contains("attachments")) {
-					    tmp = z[i] + "{media_type}"+ ",";
-				        }
-						
-			}
-	return tmp;}
-		else return "";
-		
-	}*/
-	
 	
 	
 	public static JSONObject JSONdownloader(ApiParams type,postParams params) throws ParseException, MalformedURLException {
 
-		final String access_token="EAAFKYxCh5ZBcBAHcNWZBABbrUK5bHkXiH1iHYHPFqPaq253KlB5ajK13jvkFhPqoZBvSACfFbRj9AtVTInBLmXwf6NZA1lEpcZBqPjyKtihZBPuUVZA6UxOYMmgUYDP8Dg7g7gBxBJPTSQJZCwCGRMRyxuouyQdyjrWTPBFeCvRMoqHjDm2PIW0ZB3onZBZBh5WF6GePDgBjI4ge1BVI6hqEvQVKJcgNmLqvaE6e50ZCBNJCsAZDZD";
+		final String access_token="EAAFKYxCh5ZBcBALzom1fUDEBg4EmcjZCVPpa2hQVZAmGOEbdScG8nuKhaAlGdmoSe5mQzoC4tT1lVolDOuJKcxP4SKs3NozBpZCQT6IrTH408Vhcxs2oEmnPa2SY5ZBqwyJnloc3hz2A47EoPEeZBYytPq4890y3URQ6Srq2A1iHrEbK1muDmIy2YsKr815aHjq5L6dZAUBOv6icHiuRnN303YSq2R0anqyuMS2wrZB3XAZDZD";
 		
 		String appoggio = new String(formatParams(params));
 		
 		String url=String.format("https://graph.facebook.com/me?fields=%s{%s}&access_token=%s", type.getaParams(), appoggio , access_token);
-System.out.println(url);
+        System.out.println(url);
 		String data = "";
 		String line = "";
 		
