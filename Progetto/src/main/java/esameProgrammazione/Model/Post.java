@@ -54,7 +54,9 @@ public class Post {
 	}
 
 	public void setCreated_time(String created_time) {
-		this.created_time = created_time;
+		String tmp;
+		tmp=created_time.substring(0,10);
+		this.created_time=tmp;
 	}
 
 	public String getMedia_type() {
